@@ -1,0 +1,9 @@
+root = true
+
+[packages/**.{js,ts}{,x}]
+indent_style = tab
+indent_size = 2
+
+[*.sol]
+indent_style = tab
+indent_size = 4
