@@ -5,14 +5,21 @@
     "dapp",
     "hardhat",
     "harmony",
-    "react"
+    "react",
+    "template"
   ],
   "private": true,
   "scripts": {
-    "react-app:build": "yarn workspace @harmony-dapp-template/react-app build",
-    "react-app:eject": "yarn workspace @harmony-dapp-template/react-app eject",
-    "react-app:start": "yarn workspace @harmony-dapp-template/react-app start",
-    "react-app:test": "yarn workspace @harmony-dapp-template/react-app test"
+    "hardhat": "yarn workspace @harmony-dapp-template/hardhat hardhat",
+    "hardhat:format": "yarn workspace @harmony-dapp-template/hardhat format",
+    "hardhat:lint": "yarn workspace @harmony-dapp-template/hardhat lint",
+    "frontend:build": "yarn workspace @harmony-dapp-template/frontend build",
+    "frontend:format": "yarn workspace @harmony-dapp-template/frontend format",
+    "frontend:lint": "yarn workspace @harmony-dapp-template/frontend lint",
+    "frontend:start": "yarn workspace @harmony-dapp-template/frontend start",
+    "frontend:test": "yarn workspace @harmony-dapp-template/frontend test",
+    "format": "yarn hardhat:format && yarn frontend:format",
+    "lint": "yarn hardhat:lint && yarn frontend:lint"
   },
   "workspaces": {
     "packages": [
