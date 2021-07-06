@@ -41,6 +41,9 @@
     "typescript": "^4.1.5"
   },
   "scripts": {
+    "chain": "hardhat node --network hardhat --no-deploy",
+    "compile": "hardhat compile",
+    "deploy": "hardhat deploy --export-all ../frontend/src/contracts/hardhat_contracts.json",
     "format": "prettier --write \"**/*.{js,ts,sol}\"",
     "lint": "eslint \"**/*.{js,ts}\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts}\"",

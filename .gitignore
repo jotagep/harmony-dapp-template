@@ -18,6 +18,9 @@ build
 .DS_Store
 .env*
 
+# config
+.yarnrc
+
 # debug
 npm-debug.log*
 yarn-debug.log*
