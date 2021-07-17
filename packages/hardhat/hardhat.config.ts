@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import { HardhatUserConfig } from 'hardhat/types';
-import 'hardhat-deploy';
-import 'hardhat-deploy-ethers';
-import 'hardhat-typechain';
-import 'solidity-coverage';
+import '@typechain/hardhat';
+import '@nomiclabs/hardhat-ethers';
+import '@nomiclabs/hardhat-waffle';
+import "hardhat-watcher";
 
 let mnemonic = process.env.MNEMONIC;
 if (!mnemonic) {
@@ -26,21 +26,8 @@ const config: HardhatUserConfig = {
 	solidity: {
 		version: '0.8.4',
 	},
-	namedAccounts: {
-		deployer: 0,
-	},
+	defaultNetwork: 'localnet',
 	networks: {
-		coverage: {
-			url: 'http://localhost:5458',
-			accounts: mnemonicAccounts,
-		},
-		hardhat: {
-			accounts: mnemonicAccounts,
-		},
-		localhost: {
-			url: 'http://localhost:8545',
-			accounts: mnemonicAccounts,
-		},
 		localnet: {
 			url: 'http://localhost:9500',
 			chainId: 1666700000,
@@ -49,13 +36,22 @@ const config: HardhatUserConfig = {
 		testnet: {
 			url: 'https://api.s0.b.hmny.io',
 			chainId: 1666700000,
-			accounts: accounts.Testnet,
+			accounts: mnemonicAccounts,
 		},
 		mainnet: {
 			url: 'https://api.s0.t.hmny.io',
 			chainId: 1666600000,
-			accounts: accounts.Mainnet,
+			accounts: mnemonicAccounts,
 		},
+	},
+	typechain: {
+		outDir: 'types',
+		target: 'ethers-v5',
+	},
+	watcher: {
+		compilation: {
+			tasks: ["compile"],
+		}
 	},
 };
 

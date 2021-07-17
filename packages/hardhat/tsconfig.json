@@ -1,12 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es2018",
         "module": "commonjs",
         "strict": true,
+        "sourceMap": true,
         "esModuleInterop": true,
-        "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
-        "outDir": "dist"
+        "baseUrl": ".",
+        "rootDirs": ["./src", "./scripts", "./test"],
+        "outDir": "./dist"
     },
-    "include": ["hardhat.config.ts", "./scripts", "./deploy", "./test"]
+    "exclude": ["dist", "node_modules"],
+    "include": ["./scripts", "./test"],
+    "files": ["./hardhat.config.ts"]
 }
