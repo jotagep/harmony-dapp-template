@@ -11,18 +11,16 @@
   "private": true,
   "scripts": {
     "hardhat": "yarn workspace @harmony-dapp-template/hardhat hardhat",
-    "hardhat:format": "yarn workspace @harmony-dapp-template/hardhat format",
-    "hardhat:lint": "yarn workspace @harmony-dapp-template/hardhat lint",
-    "hardhat:test": "yarn workspace @harmony-dapp-template/hardhat test",
     "frontend:build": "yarn workspace @harmony-dapp-template/frontend build",
     "frontend:format": "yarn workspace @harmony-dapp-template/frontend format",
     "frontend:lint": "yarn workspace @harmony-dapp-template/frontend lint",
     "frontend:test": "yarn workspace @harmony-dapp-template/frontend test",
     "compile": "yarn workspace @harmony-dapp-template/hardhat compile",
     "deploy": "yarn workspace @harmony-dapp-template/hardhat deploy",
-    "format": "yarn hardhat:format && yarn frontend:format",
+    "format": "yarn hardhat format && yarn frontend:format",
     "start": "yarn workspace @harmony-dapp-template/frontend start",
-    "lint": "yarn hardhat:lint && yarn frontend:lint"
+    "lint": "yarn hardhat lint && yarn frontend:lint",
+    "test": "yarn hardhat test"
   },
   "workspaces": {
     "packages": [
