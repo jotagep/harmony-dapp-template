@@ -3,10 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@ethersproject/providers": "^5.4.1",
+    "@ethersproject/units": "^5.4.0",
     "@harmony-js/core": "^0.1.57",
+    "@harmony-react/mathwallet-connector": "^1.0.2",
+    "@harmony-react/onewallet-connector": "^1.0.2",
+    "@types/styled-components": "^5.1.11",
+    "@web3-react/abstract-connector": "^6.0.7",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/types": "^6.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.0",
+    "web3modal": "^1.9.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -25,9 +35,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "format": "prettier --write \"**/*.{ts,js}\"",
-    "lint": "eslint \"**/*.{js,ts}\"",
-    "lint:fix": "eslint --fix \"**/*.{js,ts}\"",
+    "format": "prettier --write \"**/*.{ts,js}?(x)\"",
+    "lint": "eslint \"**/*.{js,ts}?(x)\"",
+    "lint:fix": "eslint --fix \"**/*.{js,ts}?(x)\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -73,9 +73,9 @@ task("balance", "Prints an account's balance")
 	});
 
 task("send", "Send ONE to another account")
-	.addPositionalParam("from", "From account's address")
-	.addPositionalParam("to", "To account's address")
-	.addPositionalParam("amount", "Amount to send in ONE")
+	.addParam("from", "From account's address")
+	.addParam("to", "To account's address")
+	.addParam("amount", "Amount to send in ONE")
 	.addOptionalParam("data", "Data included in transaction")
 	.addOptionalParam("gasPrice", "Price you are willing to pay in gwei")
 	.addOptionalParam("gasLimit", "Limit of how much gas to spend")
@@ -99,7 +99,7 @@ task("send", "Send ONE to another account")
 			console.log(`txHash: ${txResponse.hash}`);
 			console.log(`from: ${toBech32(txResponse.from)}`);
 			console.log(`to: ${txResponse.to ? toBech32(txResponse.to): 'null'}`);
-			console.log(`ammount: ${fromWei(txResponse.value.toString(), Units.one)} ONE`);
+			console.log(`amount: ${fromWei(txResponse.value.toString(), Units.one)} ONE`);
 			txResponse.gasPrice && console.log(`gasPrice: ${fromWei(txResponse.gasPrice.toString(), Units.one)} ONE`);
 			console.log('==================================');
 		} catch (error) {

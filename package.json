@@ -10,6 +10,10 @@
   ],
   "private": true,
   "scripts": {
+    "node:build": "docker build -t harmonyone/localnet https://github.com/harmony-one/harmony-one-ganache-support.git#main:docker",
+    "node:start": "docker run --name harmony-localnet --rm -d -p 9500:9500 -p 9501:9501 -p 9800:9800 -p 9801:9801 harmonyone/localnet",
+    "node:stop": "docker rm -f harmony-localnet",
+    "node:logs": "docker logs -f harmony-localnet",
     "hardhat": "yarn workspace @harmony-dapp-template/hardhat hardhat",
     "frontend:build": "yarn workspace @harmony-dapp-template/frontend build",
     "frontend:format": "yarn workspace @harmony-dapp-template/frontend format",
