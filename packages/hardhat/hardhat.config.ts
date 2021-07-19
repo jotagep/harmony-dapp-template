@@ -23,7 +23,7 @@ const mnemonicAccounts = {
 // This account is added in harmony node localnet as test account
 const testLocalnetAccount = {
 	address: 'one1v92y4v2x4q27vzydf8zq62zu9g0jl6z0lx2c8q',
-	privateKey: '0x59f46b7addacb231e75932d384c5c75d5e9a84920609b5d27a57922244efbf90'
+	privateKey: '0x144109d9b1182b51233955c112f64a545bb70143539f161e936bb01f8b1e081d'
 }
 
 const account: {[name: string] : string | undefined } = {
@@ -106,10 +106,9 @@ task("fund", "Get 100 ONE into your account")
 			console.log(`account: ${txResponse.to ? toBech32(txResponse.to): 'null'}`);
 			console.log(`amount: ${fromWei(txResponse.value.toString(), Units.one)} ONE`);
 			console.log('==================================');
-		} catch (error) {
-			console.log(error);
+		} catch (error) {	
 			console.log('Funds Failed ❌')
-			console.error(`ERROR: ${error.reason} // ${error.code} -> ${error.value}`)
+			error.reason ? console.error(`ERROR: ${error.reason} // ${error.code} -> ${error.value}`) : console.log(error);
 		}
 
 	});
@@ -146,7 +145,7 @@ task("send", "Send ONE to another account")
 			console.log('==================================');
 		} catch (error) {
 			console.log('Transaction Failed ❌')
-			console.error(`ERROR: ${error.reason} // ${error.code} -> ${error.value}`)
+			error.reason ? console.error(`ERROR: ${error.reason} // ${error.code} -> ${error.value}`) : console.log(error);
 		}
 
 	});
@@ -167,7 +166,7 @@ task("send", "Send ONE to another account")
 	const outputDir = '../frontend/src/abi';
 
 	subtask("copy-artifacts", "Move abi to frontend")
-		.setAction(async (taskArgs, hre) => {
+		.setAction(async (taskArgs, { artifacts }) => {
 			
 			// Clear if exist
 			if (fs.existsSync(outputDir)) {
@@ -179,9 +178,9 @@ task("send", "Send ONE to another account")
 				fs.mkdirSync(outputDir, { recursive: true });
 			}
 			
-			for (const fullName of await hre.artifacts.getAllFullyQualifiedNames()) {
+			for (const fullName of await artifacts.getAllFullyQualifiedNames()) {
 			
-				const { abi, contractName } = await hre.artifacts.readArtifact(fullName);
+				const { abi, contractName } = await artifacts.readArtifact(fullName);
 			
 				if (!abi.length) continue;
 			

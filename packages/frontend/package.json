@@ -31,6 +31,7 @@
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.2.1",
+    "surge": "^0.23.0",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -39,7 +40,12 @@
     "lint": "eslint \"**/*.{js,ts}?(x)\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts}?(x)\"",
     "start": "react-scripts start",
+    "start:testnet": "FRONTEND_PROVIDER_NETWORK='testnet' react-scripts start",
+    "start:mainnet": "FRONTEND_PROVIDER_NETWORK='mainnet' react-scripts start",
     "build": "react-scripts build",
+    "build:testnet": "FRONTEND_PROVIDER_NETWORK='testnet' react-scripts build",
+    "build:mainnet": "FRONTEND_PROVIDER_NETWORK='mainnet' react-scripts build",
+    "deploy": "cp build/index.html build/200.html && surge ./build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
