@@ -39,8 +39,6 @@ const Balance = () => {
 		}
 	}, [account, library, chainId]);
 
-    console.log(balance)
-
 	if (!balance) return null;
 
 	return (
