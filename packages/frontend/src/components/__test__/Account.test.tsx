@@ -7,11 +7,12 @@ import Account from '../Account';
 
 jest.mock('@web3-react/core');
 
-const component = <Account />;
-
-const setup = () => render(component);
 
 describe('Test Account component', () => {
+	const component = <Account />;
+	
+	const setup = () => render(component);
+	
 	beforeEach(() => {
 		(useWeb3React as jest.Mock).mockReturnValue({
 			account: '0xcfffa6ace98eb3464f77af3059389f8f2c18b6e9',

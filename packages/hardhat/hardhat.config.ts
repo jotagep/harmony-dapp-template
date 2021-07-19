@@ -72,6 +72,39 @@ task("balance", "Prints an account's balance")
 		console.log('💵 Balance: ' + fromWei(balance.toString(), Units.one), 'ONE')
 	});
 
+task("fund", "Get 100 ONE into your account")
+	.addPositionalParam("address", "Your account's address")
+	.addOptionalParam("from", "From account's address")
+	.addOptionalParam("amount", "Amount to send in ONE")
+	.setAction(async (taskArgs, { ethers, network }) => {
+		const { 
+			address,
+			from = String(process.env.LOCALNET_ADDRESS), 
+			amount = 100
+		} = taskArgs;
+		const signer = await ethers.getSigner(parseOneAddress(from));
+		console.log('Sending transaction...')
+		try {
+			const txResponse = await signer.sendTransaction({
+				from: parseOneAddress(from),
+				to: parseOneAddress(address),
+				value: numberToHex(toWei(amount, Units.one)),
+				nonce: await signer.getTransactionCount(),
+				chainId: network.config.chainId,
+			});
+			console.log('Funds Done ✅')
+			console.log('==================================');
+			console.log(`account: ${txResponse.to ? toBech32(txResponse.to): 'null'}`);
+			console.log(`amount: ${fromWei(txResponse.value.toString(), Units.one)} ONE`);
+			console.log('==================================');
+		} catch (error) {
+			console.log(error);
+			console.log('Funds Failed ❌')
+			console.error(`ERROR: ${error.reason} // ${error.code} -> ${error.value}`)
+		}
+
+	});
+
 task("send", "Send ONE to another account")
 	.addParam("from", "From account's address")
 	.addParam("to", "To account's address")

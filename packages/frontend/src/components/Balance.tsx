@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useWeb3React } from '@web3-react/core';
 import { toBech32 } from '@harmony-js/crypto';
 import { formatEther } from '@ethersproject/units'
@@ -40,20 +41,24 @@ const Balance = () => {
 
     console.log(balance)
 
+	if (!balance) return null;
+
 	return (
-		<>
-			<span>Balance</span>
-			<span role="img" aria-label="gold">
-				💰
-			</span>
-			<span>
-				{balance === null ? 'Error' : balance ? (isHmy ? formatEther(balance) : `Ξ${formatEther(balance)}`) : ''}
-			</span>
-            <span>
-                ONE
-            </span>
-		</>
+		<BalanceComponent>
+			<b>{formatEther(balance)}</b> <span>ONE</span>
+		</BalanceComponent>
 	);
 };
+
+const BalanceComponent = styled.div`
+	padding: 10px 20px;
+	border-radius: 25px;
+	background-color: white;
+	color: black;
+
+	& > span {
+		margin-left: 4px;
+	}
+`;
 
 export default Balance;
