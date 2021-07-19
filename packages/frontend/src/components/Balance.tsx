@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 import { toBech32 } from '@harmony-js/crypto';
 import { formatEther } from '@ethersproject/units'
 
-import { isHmyLibrary } from '../helpers/provider';
+import { isHmyLibrary } from '../utils/provider';
 
 const Balance = () => {
 	const { account, library, chainId } = useWeb3React();

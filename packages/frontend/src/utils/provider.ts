@@ -4,7 +4,7 @@ import { Harmony } from '@harmony-js/core';
 
 type Library = Web3Provider | Harmony;
 
-const envProvider: string = process.env.FRONTEND_PROVIDER || 'localnet';
+const envProvider: string = process.env.FRONTEND_PROVIDER_NETWORK || 'localnet';
 
 const configProviders: {[name:string]: any} = {
   localnet: {

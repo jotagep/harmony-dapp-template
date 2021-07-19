@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { useWeb3React } from "@web3-react/core";
 import { toBech32 } from '@harmony-js/crypto';
-import { isHmyLibrary } from '../helpers/provider';
+import { isHmyLibrary } from '../utils/provider';
 
 const Account = () => {
   const { account, library } = useWeb3React()
