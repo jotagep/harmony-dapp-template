@@ -1,6 +1,9 @@
 import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
 import { HardhatUserConfig } from 'hardhat/types';
-import { task } from "hardhat/config";
+import { subtask, task, types } from "hardhat/config";
+import { TASK_COMPILE,TASK_CLEAN } from 'hardhat/builtin-tasks/task-names'
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
@@ -17,10 +20,16 @@ const mnemonicAccounts = {
 	mnemonic,
 };
 
-const accounts = {
-	Localnet: [String(process.env.LOCALNET_PRIVATE_KEY)],
-	Testnet: [String(process.env.TESTNET_PRIVATE_KEY)],
-	Mainnet: [String(process.env.MAINNET_PRIVATE_KEY)],
+// This account is added in harmony node localnet as test account
+const testLocalnetAccount = {
+	address: 'one1v92y4v2x4q27vzydf8zq62zu9g0jl6z0lx2c8q',
+	privateKey: '0x59f46b7addacb231e75932d384c5c75d5e9a84920609b5d27a57922244efbf90'
+}
+
+const account: {[name: string] : string | undefined } = {
+	Localnet: process.env.LOCALNET_PRIVATE_KEY,
+	Testnet: process.env.TESTNET_PRIVATE_KEY,
+	Mainnet: process.env.MAINNET_PRIVATE_KEY,
 };
 
 // This adds support for typescript paths mappings
@@ -36,17 +45,17 @@ const config: HardhatUserConfig = {
 		localnet: {
 			url: 'http://localhost:9500',
 			chainId: 1666700000,
-			accounts: accounts.Localnet,
+			accounts: account.Localnet ? [account.Localnet] : [testLocalnetAccount.privateKey],
 		},
 		testnet: {
 			url: 'https://api.s0.b.hmny.io',
 			chainId: 1666700000,
-			accounts: mnemonicAccounts,
+			accounts: account.Testnet ? [account.Testnet] : mnemonicAccounts,
 		},
 		mainnet: {
 			url: 'https://api.s0.t.hmny.io',
 			chainId: 1666600000,
-			accounts: mnemonicAccounts,
+			accounts: account.Mainnet ? [account.Mainnet] : mnemonicAccounts,
 		},
 	},
 	typechain: {
@@ -55,15 +64,15 @@ const config: HardhatUserConfig = {
 	},
 	watcher: {
 		compilation: {
-			tasks: ["compile"],
+			tasks: [TASK_COMPILE],
 		}
 	},
 };
 
-// Tasks
 const parseOneAddress = (address: string): string =>
-	isBech32Address(address) ? fromBech32(address) : address
+	isBech32Address(address) ? fromBech32(address) : address;
 
+// Tasks
 task("balance", "Prints an account's balance")
 	.addPositionalParam("account", "The account's address")
 	.setAction(async (taskArgs, { ethers }) => {
@@ -74,13 +83,13 @@ task("balance", "Prints an account's balance")
 
 task("fund", "Get 100 ONE into your account")
 	.addPositionalParam("address", "Your account's address")
-	.addOptionalParam("from", "From account's address")
-	.addOptionalParam("amount", "Amount to send in ONE")
+	.addOptionalParam("from", "From account's address", testLocalnetAccount.address)
+	.addOptionalParam("amount", "Amount to send in ONE", 100, types.float)
 	.setAction(async (taskArgs, { ethers, network }) => {
 		const { 
 			address,
-			from = String(process.env.LOCALNET_ADDRESS), 
-			amount = 100
+			from,
+			amount
 		} = taskArgs;
 		const signer = await ethers.getSigner(parseOneAddress(from));
 		console.log('Sending transaction...')
@@ -141,5 +150,61 @@ task("send", "Send ONE to another account")
 		}
 
 	});
+
+	task(TASK_COMPILE, "Compile contracts")
+		.setAction(async (taskArgs, hre, runSuper) => {
+			await runSuper();
+			await hre.run("copy-artifacts");
+		});
+
+	task(TASK_CLEAN, "Clean contracts & abi folder in frontend")
+		.setAction(async (taskArgs, hre, runSuper) => {
+			await runSuper();
+			await hre.run("clean-front-abi");
+		});
+
+	// Default output dir to abi contracts in frontend
+	const outputDir = '../frontend/src/abi';
+
+	subtask("copy-artifacts", "Move abi to frontend")
+		.setAction(async (taskArgs, hre) => {
+			
+			// Clear if exist
+			if (fs.existsSync(outputDir)) {
+				fs.rmdirSync(outputDir, { recursive: true });
+			}
+
+			// Create dir if not exist
+			if (!fs.existsSync(outputDir)) {
+				fs.mkdirSync(outputDir, { recursive: true });
+			}
+			
+			for (const fullName of await hre.artifacts.getAllFullyQualifiedNames()) {
+			
+				const { abi, contractName } = await hre.artifacts.readArtifact(fullName);
+			
+				if (!abi.length) continue;
+			
+				const destination = path.resolve(
+				  outputDir,
+				  contractName
+				) + '.json';
+			
+				if (!fs.existsSync(path.dirname(destination))) {
+				  fs.mkdirSync(path.dirname(destination), { recursive: true });
+				}
+			
+				fs.writeFileSync(destination, `${ JSON.stringify(abi, null, 2) }\n`, { flag: 'w' });
+			  }
+		});
+
+	subtask("clean-front-abi", "Clear frontend abi folder")
+		.setAction(async () => {
+			// Clear if exist
+			if (fs.existsSync(outputDir)) {
+				fs.rmdirSync(outputDir, { recursive: true });
+			}
+		});
+
 
 export default config;
