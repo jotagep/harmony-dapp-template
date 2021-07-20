@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import styled from 'styled-components';
 
 import { useWeb3React } from "@web3-react/core";
+import { useHarmony } from '../context/harmonyContext';
 import { toBech32 } from '@harmony-js/crypto';
 import { isHmyLibrary } from '../utils/provider';
 
@@ -14,15 +15,17 @@ Modal.setAppElement('#root');
 
 const Account = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { account, library, deactivate, active } = useWeb3React();
+  const { account, library, active } = useWeb3React();
+  const hmy = useHarmony();
+
   const isHmy = isHmyLibrary(library);
   const parsedAccount = (isHmy && account) ? toBech32(account) : account;
 
   useEffect(() => {
-    return () => {
-      deactivate()
+    if (account) {
+      hmy.wallet.setSigner(account)
     }
-  }, [])
+  }, [account]);
 
   const openModal = () => {
     setModalIsOpen(true);

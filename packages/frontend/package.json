@@ -16,8 +16,7 @@
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.3",
     "react-scripts": "4.0.3",
-    "styled-components": "^5.3.0",
-    "web3modal": "^1.9.3"
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -30,6 +29,7 @@
     "@types/react-modal": "^3.12.1",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
+    "cross-env": "^7.0.3",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.2.1",
@@ -42,11 +42,11 @@
     "lint": "eslint \"**/*.{js,ts}?(x)\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts}?(x)\"",
     "start": "react-scripts start",
-    "start:testnet": "FRONTEND_PROVIDER_NETWORK='testnet' react-scripts start",
-    "start:mainnet": "FRONTEND_PROVIDER_NETWORK='mainnet' react-scripts start",
+    "start:testnet": "cross-env REACT_APP_FRONTEND_NETWORK=testnet react-scripts start",
+    "start:mainnet": "cross-env REACT_APP_FRONTEND_NETWORK=mainnet react-scripts start",
     "build": "react-scripts build",
-    "build:testnet": "FRONTEND_PROVIDER_NETWORK='testnet' react-scripts build",
-    "build:mainnet": "FRONTEND_PROVIDER_NETWORK='mainnet' react-scripts build",
+    "build:testnet": "cross-env REACT_APP_FRONTEND_NETWORK=testnet react-scripts build",
+    "build:mainnet": "cross-env REACT_APP_FRONTEND_NETWORK=mainnet react-scripts build",
     "deploy": "cp build/index.html build/200.html && surge ./build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

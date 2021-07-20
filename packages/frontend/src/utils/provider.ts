@@ -4,7 +4,7 @@ import { Harmony } from '@harmony-js/core';
 
 type Library = Web3Provider | Harmony;
 
-const envProvider: string = process.env.FRONTEND_PROVIDER_NETWORK || 'localnet';
+const envProvider: string = process.env.REACT_APP_FRONTEND_NETWORK || 'localnet';
 
 const configProviders: {[name:string]: any} = {
   localnet: {
@@ -27,11 +27,13 @@ const configProviders: {[name:string]: any} = {
   }
 }
 
+export const getProvider = () => configProviders[envProvider];
+
 export const getLibraryProvider = (provider: any): Library => {
 	let library: Web3Provider | Harmony;
 
 	if (provider?.chainType === 'hmy') {
-    provider.setProvider(configProviders[envProvider].url)
+    provider.setProvider(getProvider().url)
 		library = provider.blockchain;
 	} else {
 		library = new Web3Provider(provider);

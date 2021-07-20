@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Unit } from '@harmony-js/utils'
 
 import Account from './components/Account';
 import Balance from './components/Balance';
 
 import Logo from './img/harmony_logo.svg'
+import { useHarmony } from './context/harmonyContext';
 
 const App = () => {
+
+  const hmy = useHarmony();
 
 	return (
 		<Wrapper>
