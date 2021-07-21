@@ -23,7 +23,7 @@ const Account = () => {
 
   useEffect(() => {
     if (account) {
-      hmy.wallet.setSigner(account)
+      hmy.wallet.setSigner(account);
     }
   }, [account]);
 

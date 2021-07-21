@@ -1,13 +1,12 @@
 import 'dotenv/config';
 import fs from 'fs';
-import path from 'path';
 import { HardhatUserConfig } from 'hardhat/types';
 import { subtask, task, types } from "hardhat/config";
-import { TASK_COMPILE,TASK_CLEAN } from 'hardhat/builtin-tasks/task-names'
+import { TASK_CLEAN } from 'hardhat/builtin-tasks/task-names'
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
-import "hardhat-watcher";
+import 'hardhat-deploy';
 
 import { fromBech32, toBech32 } from '@harmony-js/crypto';
 import { fromWei, isBech32Address, Units, toWei, numberToHex } from '@harmony-js/utils';
@@ -32,9 +31,11 @@ const account: {[name: string] : string | undefined } = {
 	Mainnet: process.env.MAINNET_PRIVATE_KEY,
 };
 
+// Default output dir to abi contracts in frontend
+const outputDir = '../frontend/src/contracts';
+
 // This adds support for typescript paths mappings
 import 'tsconfig-paths/register';
-
 
 const config: HardhatUserConfig = {
 	solidity: {
@@ -43,6 +44,7 @@ const config: HardhatUserConfig = {
 	defaultNetwork: 'localnet',
 	networks: {
 		localnet: {
+			live: false,
 			url: 'http://localhost:9500',
 			chainId: 1666700000,
 			accounts: account.Localnet ? [account.Localnet] : [testLocalnetAccount.privateKey],
@@ -62,10 +64,10 @@ const config: HardhatUserConfig = {
 		outDir: 'types',
 		target: 'ethers-v5',
 	},
-	watcher: {
-		compilation: {
-			tasks: [TASK_COMPILE],
-		}
+	namedAccounts: {
+		deployer: {
+			default: 0, // here this will by default take the first account as deployer
+		},
 	},
 };
 
@@ -150,54 +152,13 @@ task("send", "Send ONE to another account")
 
 	});
 
-	task(TASK_COMPILE, "Compile contracts")
-		.setAction(async (taskArgs, hre, runSuper) => {
-			await runSuper();
-			await hre.run("copy-artifacts");
-		});
-
 	task(TASK_CLEAN, "Clean contracts & abi folder in frontend")
 		.setAction(async (taskArgs, hre, runSuper) => {
 			await runSuper();
 			await hre.run("clean-front-abi");
 		});
 
-	// Default output dir to abi contracts in frontend
-	const outputDir = '../frontend/src/abi';
-
-	subtask("copy-artifacts", "Move abi to frontend")
-		.setAction(async (taskArgs, { artifacts }) => {
-			
-			// Clear if exist
-			if (fs.existsSync(outputDir)) {
-				fs.rmdirSync(outputDir, { recursive: true });
-			}
-
-			// Create dir if not exist
-			if (!fs.existsSync(outputDir)) {
-				fs.mkdirSync(outputDir, { recursive: true });
-			}
-			
-			for (const fullName of await artifacts.getAllFullyQualifiedNames()) {
-			
-				const { abi, contractName } = await artifacts.readArtifact(fullName);
-			
-				if (!abi.length) continue;
-			
-				const destination = path.resolve(
-				  outputDir,
-				  contractName
-				) + '.json';
-			
-				if (!fs.existsSync(path.dirname(destination))) {
-				  fs.mkdirSync(path.dirname(destination), { recursive: true });
-				}
-			
-				fs.writeFileSync(destination, `${ JSON.stringify(abi, null, 2) }\n`, { flag: 'w' });
-			  }
-		});
-
-	subtask("clean-front-abi", "Clear frontend abi folder")
+	subtask("clean-front-contracts", "Clear frontend contracts folder")
 		.setAction(async () => {
 			// Clear if exist
 			if (fs.existsSync(outputDir)) {
