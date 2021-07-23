@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import fs from 'fs';
+import fsExtra from 'fs-extra'
 import { HardhatUserConfig } from 'hardhat/types';
 import { subtask, task, types } from "hardhat/config";
 import { TASK_CLEAN } from 'hardhat/builtin-tasks/task-names'
@@ -152,17 +153,20 @@ task("send", "Send ONE to another account")
 
 	});
 
-	task(TASK_CLEAN, "Clean contracts & abi folder in frontend")
+	task(TASK_CLEAN, "Clean all artifacts & folder contracts in frontend")
 		.setAction(async (taskArgs, hre, runSuper) => {
 			await runSuper();
-			await hre.run("clean-front-abi");
+			if (fs.existsSync('./deployments')) {
+				fs.rmdirSync('./deployments', { recursive: true });
+			}
+			await hre.run("clean-front-contracts");
 		});
 
 	subtask("clean-front-contracts", "Clear frontend contracts folder")
 		.setAction(async () => {
 			// Clear if exist
 			if (fs.existsSync(outputDir)) {
-				fs.rmdirSync(outputDir, { recursive: true });
+				fsExtra.emptyDirSync(outputDir);
 			}
 		});
 

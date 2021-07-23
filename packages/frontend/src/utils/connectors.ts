@@ -2,6 +2,7 @@ import { OneWalletConnector } from '@harmony-react/onewallet-connector';
 import { MathWalletConnector } from '@harmony-react/mathwallet-connector';
 
 import { AbstractConnector } from '@web3-react/abstract-connector';
+
 enum ConnectorNames {
 	OneWallet = 'OneWallet',
 	Mathwallet = 'MathWallet',

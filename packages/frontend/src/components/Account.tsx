@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 
 import { useWeb3React } from "@web3-react/core";
-import { useHarmony } from '../context/harmonyContext';
 import { toBech32 } from '@harmony-js/crypto';
-import { isHmyLibrary } from '../utils/provider';
+import { isHmyLibrary } from '../helpers/harmonyHelpers';
 
 import SignOut from './SignOut';
 import Wallets from './Wallets';
-
+import { useHarmony } from '../context/harmonyContext';
 
 Modal.setAppElement('#root');
 
 const Account = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { account, library, active } = useWeb3React();
-  const hmy = useHarmony();
+  const { fetchBalance } = useHarmony();
 
   const isHmy = isHmyLibrary(library);
   const parsedAccount = (isHmy && account) ? toBech32(account) : account;
 
-  useEffect(() => {
+  const openModal = async () => {
     if (account) {
-      hmy.wallet.setSigner(account);
+      await fetchBalance(account)
     }
-  }, [account]);
-
-  const openModal = () => {
     setModalIsOpen(true);
   }
 

@@ -2,44 +2,27 @@
   "name": "localnet",
   "chainId": "1666700000",
   "contracts": {
-    "Greeter": {
-      "address": "0x746e9c034FC108EF8379680dCe0fBFb404Bb7bC2",
+    "Money": {
+      "address": "0xDF2b9Cf11408C4B59E0fA24abeEea68Fdfc2fb9A",
       "abi": [
         {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "_greeting",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
           "inputs": [],
-          "name": "greet",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
+          "name": "addMoney",
+          "outputs": [],
+          "stateMutability": "payable",
           "type": "function"
         },
         {
-          "inputs": [
+          "inputs": [],
+          "name": "getMoneyStored",
+          "outputs": [
             {
-              "internalType": "string",
-              "name": "_greeting",
-              "type": "string"
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
             }
           ],
-          "name": "setGreeting",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "stateMutability": "view",
           "type": "function"
         }
       ]

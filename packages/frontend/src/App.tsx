@@ -1,34 +1,50 @@
 import React, { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 import { Unit } from '@harmony-js/utils'
 import { useWeb3React } from "@web3-react/core";
 import Account from './components/Account';
 import Balance from './components/Balance';
 
+import { HarmonyAbstractConnector } from '@harmony-react/abstract-connector';
+
 import Logo from './img/harmony_logo.svg'
 import { useHarmony } from './context/harmonyContext';
 
 import Contracts from './contracts/contracts.json';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
-  const { account } = useWeb3React();
-  const hmy = useHarmony();
+  const { account, connector } = useWeb3React();
+  const { hmy, fetchBalance } = useHarmony();
   const contractInstance = hmy.contracts.createContract(
-    Contracts.contracts.Greeter.abi,
-    Contracts.contracts.Greeter.address
+    Contracts.contracts.Money.abi,
+    Contracts.contracts.Money.address
   );
 
   useEffect(() => {
-    if (account) {  
+    if (account && connector) {  
       setTimeout(() => {
         (async () => {
-          const prueba = await contractInstance.methods.setGreeting('').send({
-            from: account,
-            gasLimit: '1000001',
-            gasPrice: new Unit('10').asGwei().toWei(),
-            value: new Unit('1').asOne().toWei()
-          });
-          console.log(prueba);
+          const contrato = await (connector as HarmonyAbstractConnector).attachToContract(contractInstance);
+          try {            
+            const prueba = await contrato.methods.addMoney().send({
+              from: account,
+              gasPrice: 1000000000,
+              gasLimit: 210000,
+              value: new Unit('10').asOne().toWei()
+            });
+            toast.success('Transaction done', {
+              onClose: async () => {
+                await fetchBalance(account)
+                const dato = await contrato.methods.getMoneyStored().call();
+                console.log(new Unit(dato).toOne());
+              }
+            })
+          } catch (error) {
+            toast.error(error);
+          }
         })()
       }, 2000);    
     }
@@ -49,6 +65,13 @@ const App = () => {
 
         </Content>
       </Container>
+      <ToastContainer 
+        position="bottom-right"
+        newestOnTop={false}
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+        rtl={false}
+      />
 		</Wrapper>
 	);
 };

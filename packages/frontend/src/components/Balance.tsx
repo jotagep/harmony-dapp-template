@@ -1,49 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useWeb3React } from '@web3-react/core';
-import { toBech32 } from '@harmony-js/crypto';
-import { formatEther } from '@ethersproject/units'
 
-import { isHmyLibrary } from '../utils/provider';
+import { useHarmony } from '../context/harmonyContext';
 
 const Balance = () => {
-	const { account, library, chainId } = useWeb3React();
-	const isHmy = isHmyLibrary(library);
+	const { account, chainId } = useWeb3React();
+	const { balance, fetchBalance, resetBalance } = useHarmony();
 
-	const [balance, setBalance] = useState<string | null>(null);
 	useEffect(() => {
-		if (!!account && !!library) {
-			let stale = false;
-			const accountArgs = isHmy ? { address: toBech32(account) } : account;
-
-			library
-				.getBalance(accountArgs)
-				.then((balance: any) => {
-					if (isHmy) {
-						balance = balance.result;
-					}
-					if (!stale) {
-						setBalance(balance);
-					}
-				})
-				.catch(() => {
-					if (!stale) {
-						setBalance(null);
-					}
-				});
-
-			return () => {
-				stale = true;
-				setBalance(null);
-			};
+		if (account) {
+			fetchBalance(account)
+		} else {
+			resetBalance()
 		}
-	}, [account, library, chainId]);
+	}, [account, chainId, fetchBalance]);
 
 	if (!balance) return null;
 
 	return (
 		<BalanceComponent>
-			<b>{formatEther(balance)}</b> <span>ONE</span>
+			<b>{balance}</b> <span>ONE</span>
 		</BalanceComponent>
 	);
 };

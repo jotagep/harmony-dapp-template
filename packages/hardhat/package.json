@@ -12,6 +12,7 @@
     "@typechain/ethers-v5": "^7.0.1",
     "@typechain/hardhat": "^2.1.2",
     "@types/chai": "^4.2.15",
+    "@types/fs-extra": "^9.0.12",
     "@types/mocha": "^8.2.1",
     "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
@@ -46,5 +47,8 @@
     "lint": "eslint \"**/*.{js,ts}\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts}\"",
     "hardhat": "hardhat"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0"
   }
 }

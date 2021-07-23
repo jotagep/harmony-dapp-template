@@ -10,11 +10,11 @@ import { getLibraryProvider } from './utils/provider';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<HarmonyProvider >
-			<Web3ReactProvider getLibrary={getLibraryProvider}>
+		<Web3ReactProvider getLibrary={getLibraryProvider}>
+			<HarmonyProvider >
 				<App />
-			</Web3ReactProvider>
-		</HarmonyProvider>
+			</HarmonyProvider>
+		</Web3ReactProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),
 );

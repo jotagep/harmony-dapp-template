@@ -7,7 +7,6 @@ import Account from '../Account';
 
 jest.mock('@web3-react/core');
 
-
 describe('Test Account component', () => {
 	const component = <Account />;
 	

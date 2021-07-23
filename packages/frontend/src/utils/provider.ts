@@ -42,5 +42,3 @@ export const getLibraryProvider = (provider: any): Library => {
 
 	return library;
 };
-
-export const isHmyLibrary = (library: any): boolean => library?.messenger?.chainType === 'hmy';  
