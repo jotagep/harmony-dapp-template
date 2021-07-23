@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 import "hardhat/console.sol";
 
 contract Money {
-	uint256 moneyStored;
+	uint256 moneyStored = 0;
 
     function addMoney() payable public {
         moneyStored += msg.value;

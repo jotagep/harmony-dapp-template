@@ -44,6 +44,9 @@ const config: HardhatUserConfig = {
 	},
 	defaultNetwork: 'localnet',
 	networks: {
+		hardhat: {
+			accounts: mnemonicAccounts,
+		},
 		localnet: {
 			live: false,
 			url: 'http://localhost:9500',
