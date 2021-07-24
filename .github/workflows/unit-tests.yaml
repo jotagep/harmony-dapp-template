@@ -35,5 +35,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Create contracts types
+        run: yarn hardhat typechain
+
       - name: Run unit tests
         run: yarn test
