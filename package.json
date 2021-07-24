@@ -35,7 +35,7 @@
     "surge:mainnet": "yarn workspace @harmony-dapp-template/frontend build:mainnet & yarn frontend:deploy",
     "start": "yarn workspace @harmony-dapp-template/frontend start",
     "lint": "yarn hardhat:lint && yarn frontend:lint",
-    "test": "yarn hardhat:test"
+    "test": "yarn hardhat:test && yarn frontend:test"
   },
   "workspaces": {
     "packages": [
