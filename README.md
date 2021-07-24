@@ -88,7 +88,7 @@ To see this info in your terminal:
 yarn hardhat --help
 ```
 
-### passenger_ship Ship it!
+### ⛵ Ship it!
 Once you have your project done, you can deployed to live
 
 ```bash
