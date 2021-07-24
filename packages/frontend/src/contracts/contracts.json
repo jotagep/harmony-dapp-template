@@ -3,7 +3,7 @@
   "chainId": "1666700000",
   "contracts": {
     "Money": {
-      "address": "0xDF2b9Cf11408C4B59E0fA24abeEea68Fdfc2fb9A",
+      "address": "0xd2DF1D661AAeFaB2384E044750134802e4388857",
       "abi": [
         {
           "inputs": [],

@@ -2,7 +2,7 @@ import React from 'react';;
 import styled from 'styled-components';
 import { useWeb3React } from "@web3-react/core";
 
-interface Props {
+export interface Props {
     account: string | null | undefined,
     closeModal: () => void
 }

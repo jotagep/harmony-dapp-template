@@ -5,7 +5,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector';
 
 import { connectorsByName } from '../utils/connectors';
 
-interface Props {
+export interface Props {
     closeModal: () => void
 }
 

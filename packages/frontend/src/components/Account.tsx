@@ -8,22 +8,15 @@ import { isHmyLibrary } from '../helpers/harmonyHelpers';
 
 import SignOut from './SignOut';
 import Wallets from './Wallets';
-import { useHarmony } from '../context/harmonyContext';
-
-Modal.setAppElement('#root');
 
 const Account = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { account, library, active } = useWeb3React();
-  const { fetchBalance } = useHarmony();
 
   const isHmy = isHmyLibrary(library);
   const parsedAccount = (isHmy && account) ? toBech32(account) : account;
 
   const openModal = async () => {
-    if (account) {
-      await fetchBalance(account)
-    }
     setModalIsOpen(true);
   }
 

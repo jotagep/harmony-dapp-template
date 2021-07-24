@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test SignOut component Should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdnxRM jMwNvo"
+  >
+    <p>
+      You are connected:
+    </p>
+    <span>
+      0xcfffa6ace98eb3464f77af3059389f8f2c18b6e9
+    </span>
+    <div
+      class="sc-gtsrHT iVCMTs"
+    >
+      Sign out
+    </div>
+  </div>
+</div>
+`;

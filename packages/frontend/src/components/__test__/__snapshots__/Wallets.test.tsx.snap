@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Wallets component Should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdnxRM gitBqv"
+  >
+    <div
+      class="sc-gtsrHT gtqmMC"
+    >
+      OneWallet
+    </div>
+    <div
+      class="sc-gtsrHT gtqmMC"
+    >
+      MathWallet
+    </div>
+  </div>
+</div>
+`;

@@ -1,55 +1,16 @@
-import React, { useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
-import { Unit } from '@harmony-js/utils'
-import { useWeb3React } from "@web3-react/core";
+
 import Account from './components/Account';
 import Balance from './components/Balance';
-
-import { HarmonyAbstractConnector } from '@harmony-react/abstract-connector';
+import InfoContract from './components/InfoContract';
 
 import Logo from './img/harmony_logo.svg'
-import { useHarmony } from './context/harmonyContext';
-
-import Contracts from './contracts/contracts.json';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const { account, connector } = useWeb3React();
-  const { hmy, fetchBalance } = useHarmony();
-  const contractInstance = hmy.contracts.createContract(
-    Contracts.contracts.Money.abi,
-    Contracts.contracts.Money.address
-  );
-
-  useEffect(() => {
-    if (account && connector) {  
-      setTimeout(() => {
-        (async () => {
-          const contrato = await (connector as HarmonyAbstractConnector).attachToContract(contractInstance);
-          try {            
-            const prueba = await contrato.methods.addMoney().send({
-              from: account,
-              gasPrice: 1000000000,
-              gasLimit: 210000,
-              value: new Unit('10').asOne().toWei()
-            });
-            toast.success('Transaction done', {
-              onClose: async () => {
-                await fetchBalance(account)
-                const dato = await contrato.methods.getMoneyStored().call();
-                console.log(new Unit(dato).toOne());
-              }
-            })
-          } catch (error) {
-            toast.error(error);
-          }
-        })()
-      }, 2000);    
-    }
-  }, [account])
-
 
 	return (
 		<Wrapper>
@@ -62,7 +23,7 @@ const App = () => {
           </Flex>
         </Topbar>
         <Content>
-
+          <InfoContract />
         </Content>
       </Container>
       <ToastContainer 
@@ -94,6 +55,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
+  width: 100%;
 `
 
 const Container = styled.div`

@@ -5,10 +5,19 @@ import { render } from '@testing-library/react';
 import { useWeb3React } from '@web3-react/core';
 import Account from '../Account';
 
+import { mockComponent } from '../../helpers/testHelper';
+
 jest.mock('@web3-react/core');
 
+jest.mock('../SignOut', () => (props: any) =>
+  mockComponent('Wallets', props)
+);
+jest.mock('../Wallets', () => (props: any) =>
+  mockComponent('Wallets', props)
+);
+
 describe('Test Account component', () => {
-	const component = <Account />;
+	const component = <Account />
 	
 	const setup = () => render(component);
 	
@@ -27,6 +36,7 @@ describe('Test Account component', () => {
 
 	it('Should render component without crash', () => {
 		const div = document.createElement('div');
+		div.id = 'root';
 		ReactDOM.render(component, div);
 		ReactDOM.unmountComponentAtNode(div);
 	});

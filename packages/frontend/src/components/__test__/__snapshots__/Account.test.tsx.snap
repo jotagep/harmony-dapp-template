@@ -2,17 +2,14 @@
 
 exports[`Test Account component Should match snapshot 1`] = `
 <div>
-  <span>
-    Account
-  </span>
-  <span
-    aria-label="robot"
-    role="img"
+  <div
+    class="sc-bdnxRM jOilDr"
   >
-    🤖
-  </span>
-  <span>
-    one1el...gcvy
-  </span>
+    <span>
+      one1el
+      ...
+      gcvy
+    </span>
+  </div>
 </div>
 `;
