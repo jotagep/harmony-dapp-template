@@ -1,4 +1,6 @@
 ![header](https://user-images.githubusercontent.com/8777166/126854579-2f3d6973-b3c7-45da-add4-1362ad9a68ae.jpg)
+
+![example workflow](https://github.com/jotagep/harmony-dapp-template/actions/workflows/unit-tests.yaml/badge.svg)
 # 🧰 Harmony Dapp Template
 
 > All-in-one forkable dev stack to build your dapp in Harmony 🚀
