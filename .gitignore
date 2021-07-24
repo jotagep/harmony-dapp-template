@@ -4,6 +4,7 @@
 packages/hardhat/artifacts*
 packages/hardhat/deployments
 packages/hardhat/cache*
+packages/hardhat/types
 
 # dependencies
 /node_modules
@@ -17,6 +18,9 @@ build
 # misc
 .DS_Store
 .env*
+
+# config
+.yarnrc
 
 # debug
 npm-debug.log*

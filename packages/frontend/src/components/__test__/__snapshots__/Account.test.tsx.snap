@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Account component Should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdnxRM jOilDr"
+  >
+    <span>
+      one1el
+      ...
+      gcvy
+    </span>
+  </div>
+</div>
+`;

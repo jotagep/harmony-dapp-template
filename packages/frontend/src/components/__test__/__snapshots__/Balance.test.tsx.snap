@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Balance component Should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdnxRM fwNNIJ"
+  >
+    <b>
+      0
+    </b>
+     
+    <span>
+      ONE
+    </span>
+  </div>
+</div>
+`;

@@ -5,14 +5,37 @@
     "dapp",
     "hardhat",
     "harmony",
-    "react"
+    "react",
+    "template"
   ],
   "private": true,
   "scripts": {
-    "react-app:build": "yarn workspace @harmony-dapp-template/react-app build",
-    "react-app:eject": "yarn workspace @harmony-dapp-template/react-app eject",
-    "react-app:start": "yarn workspace @harmony-dapp-template/react-app start",
-    "react-app:test": "yarn workspace @harmony-dapp-template/react-app test"
+    "localnet:build": "docker build -t harmonyone/localnet docker",
+    "localnet:start": "docker run --name harmony-localnet --rm -d -p 9500:9500 -p 9501:9501 -p 9800:9800 -p 9801:9801 harmonyone/localnet && ./scripts/init-node.sh",
+    "localnet:stop": "docker rm -f harmony-localnet",
+    "localnet:logs": "docker logs -f harmony-localnet",
+    "localnet:hmy": "docker exec -it harmony-localnet hmy",
+    "hardhat": "yarn workspace @harmony-dapp-template/hardhat hardhat",
+    "hardhat:lint": "yarn workspace @harmony-dapp-template/hardhat lint",
+    "hardhat:test": "yarn workspace @harmony-dapp-template/hardhat test",
+    "frontend:build": "yarn workspace @harmony-dapp-template/frontend build",
+    "frontend:deploy": "yarn workspace @harmony-dapp-template/frontend deploy",
+    "frontend:format": "yarn workspace @harmony-dapp-template/frontend format",
+    "frontend:lint": "yarn workspace @harmony-dapp-template/frontend lint",
+    "frontend:test": "yarn workspace @harmony-dapp-template/frontend test",
+    "compile": "yarn workspace @harmony-dapp-template/hardhat compile",
+    "format": "yarn hardhat format && yarn frontend:format",
+    "fund": "yarn workspace @harmony-dapp-template/hardhat hardhat fund",
+    "deploy": "yarn workspace @harmony-dapp-template/hardhat deploy",
+    "deploy:watch": "yarn workspace @harmony-dapp-template/hardhat deploy:live",
+    "deploy:testnet": "yarn workspace @harmony-dapp-template/hardhat deploy:testnet",
+    "deploy:mainnet": "yarn workspace @harmony-dapp-template/hardhat deploy:mainnet",
+    "surge": "yarn workspace @harmony-dapp-template/frontend build & yarn frontend:deploy",
+    "surge:testnet": "yarn workspace @harmony-dapp-template/frontend build:testnet & yarn frontend:deploy",
+    "surge:mainnet": "yarn workspace @harmony-dapp-template/frontend build:mainnet & yarn frontend:deploy",
+    "start": "yarn workspace @harmony-dapp-template/frontend start",
+    "lint": "yarn hardhat:lint && yarn frontend:lint",
+    "test": "yarn hardhat:test"
   },
   "workspaces": {
     "packages": [
