@@ -11,7 +11,7 @@ import { getLibraryProvider } from './utils/provider';
 ReactDOM.render(
 	<React.StrictMode>
 		<Web3ReactProvider getLibrary={getLibraryProvider}>
-			<HarmonyProvider >
+			<HarmonyProvider>
 				<App />
 			</HarmonyProvider>
 		</Web3ReactProvider>

@@ -6,15 +6,9 @@ import App from '../App';
 
 import { mockComponent } from '../helpers/testHelper';
 
-jest.mock('../components/Account', () => (props: any) =>
-  mockComponent('Account', props)
-);
-jest.mock('../components/Balance', () => (props: any) =>
-  mockComponent('Balance', props)
-);
-jest.mock('../components/InfoContract', () => (props: any) =>
-  mockComponent('InfoContract', props)
-);
+jest.mock('../components/Account', () => (props: any) => mockComponent('Account', props));
+jest.mock('../components/Balance', () => (props: any) => mockComponent('Balance', props));
+jest.mock('../components/InfoContract', () => (props: any) => mockComponent('InfoContract', props));
 
 describe('Test App component', () => {
 	const component = <App />;

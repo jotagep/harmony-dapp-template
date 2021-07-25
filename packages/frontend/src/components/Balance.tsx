@@ -10,9 +10,9 @@ const Balance = () => {
 
 	useEffect(() => {
 		if (account) {
-			fetchBalance(account)
+			fetchBalance(account);
 		} else {
-			resetBalance()
+			resetBalance();
 		}
 	}, [account, chainId, fetchBalance]);
 

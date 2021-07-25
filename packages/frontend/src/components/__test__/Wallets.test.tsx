@@ -11,12 +11,12 @@ jest.mock('@web3-react/core');
 
 describe('Test Wallets component', () => {
 	const testProps: Props = {
-		closeModal: jest.fn()
-	}
+		closeModal: jest.fn(),
+	};
 	const component = <Wallets {...testProps} />;
-	
+
 	const setup = () => render(component);
-	
+
 	beforeEach(() => {
 		(useWeb3React as jest.Mock).mockReturnValue({
 			activate: jest.fn(),
@@ -37,15 +37,13 @@ describe('Test Wallets component', () => {
 	});
 
 	it('Should call activate this wallet & close modal when click a wallet', () => {
-		const walletName = 'OneWallet'
+		const walletName = 'OneWallet';
 		const { getByText } = setup();
 
 		const oneWallet = getByText(walletName);
-		fireEvent.click(oneWallet)
+		fireEvent.click(oneWallet);
 
-		expect(useWeb3React().activate).toHaveBeenCalledWith(
-			connectorsByName[walletName]
-		);
+		expect(useWeb3React().activate).toHaveBeenCalledWith(connectorsByName[walletName]);
 		expect(testProps.closeModal).toHaveBeenCalled();
 	});
 });
