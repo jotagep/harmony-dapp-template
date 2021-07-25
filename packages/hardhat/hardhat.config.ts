@@ -33,7 +33,7 @@ const account: { [name: string]: string | undefined } = {
 };
 
 // Default output dir to abi contracts in frontend
-const outputDir = '../frontend/src/contracts';
+const contractsFrontDir = '../frontend/src/contracts';
 
 // This adds support for typescript paths mappings
 import 'tsconfig-paths/register';
@@ -159,9 +159,16 @@ task(TASK_CLEAN, 'Clean all artifacts & folder contracts in frontend').setAction
 
 subtask('clean-front-contracts', 'Clear frontend contracts folder').setAction(async () => {
 	// Clear if exist
-	if (fs.existsSync(outputDir)) {
-		fsExtra.emptyDirSync(outputDir);
+	if (fs.existsSync(contractsFrontDir)) {
+		fsExtra.emptyDirSync(contractsFrontDir);
 	}
+});
+
+task("deploy", 'Deploy contracts').setAction(async (taskArgs, hre, runSuper) => {
+	if (!fs.existsSync(contractsFrontDir)) {
+		fs.mkdirSync(contractsFrontDir, { recursive: true });
+	}
+	await runSuper(taskArgs);
 });
 
 export default config;
