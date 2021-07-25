@@ -52,6 +52,7 @@ const InfoContract = () => {
     }, [connector, contractInstance, setContract]);
 
     const handleClick = (value: string) => async () => {
+        if (!account) return null;
         try {       
             await contract.methods.addMoney().send({
                 from: account,
@@ -61,7 +62,7 @@ const InfoContract = () => {
             });
             toast.success('Transaction done', {
                 onClose: async () => {
-                    account && await fetchBalance(account)
+                    await fetchBalance(account)
                     getMoneyStored();
                 }
             });
