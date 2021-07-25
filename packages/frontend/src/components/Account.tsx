@@ -9,6 +9,8 @@ import { isHmyLibrary } from '../helpers/harmonyHelpers';
 import SignOut from './SignOut';
 import Wallets from './Wallets';
 
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
+
 const Account = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { account, library, active } = useWeb3React();
