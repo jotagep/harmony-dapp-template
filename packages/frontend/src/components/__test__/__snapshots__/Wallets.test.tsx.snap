@@ -3,15 +3,15 @@
 exports[`Test Wallets component Should match snapshot 1`] = `
 <div>
   <div
-    class="sc-bdnxRM gitBqv"
+    class="sc-bdnxRM hCNCpa"
   >
     <div
-      class="sc-gtsrHT gtqmMC"
+      class="sc-gtsrHT czZCjj"
     >
       OneWallet
     </div>
     <div
-      class="sc-gtsrHT gtqmMC"
+      class="sc-gtsrHT czZCjj"
     >
       MathWallet
     </div>

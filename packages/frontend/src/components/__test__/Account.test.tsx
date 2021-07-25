@@ -9,18 +9,14 @@ import { mockComponent } from '../../helpers/testHelper';
 
 jest.mock('@web3-react/core');
 
-jest.mock('../SignOut', () => (props: any) =>
-  mockComponent('Wallets', props)
-);
-jest.mock('../Wallets', () => (props: any) =>
-  mockComponent('Wallets', props)
-);
+jest.mock('../SignOut', () => (props: any) => mockComponent('Wallets', props));
+jest.mock('../Wallets', () => (props: any) => mockComponent('Wallets', props));
 
 describe('Test Account component', () => {
-	const component = <Account />
-	
+	const component = <Account />;
+
 	const setup = () => render(component);
-	
+
 	beforeEach(() => {
 		(useWeb3React as jest.Mock).mockReturnValue({
 			account: '0xcfffa6ace98eb3464f77af3059389f8f2c18b6e9',

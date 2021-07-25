@@ -13,19 +13,19 @@ jest.mock('../../context/harmonyContext');
 
 describe('Test Balance component', () => {
 	const component = <Balance />;
-	
+
 	const setup = () => render(component);
-	
+
 	beforeEach(() => {
 		(useWeb3React as jest.Mock).mockReturnValue({
 			account: '0xcfffa6ace98eb3464f77af3059389f8f2c18b6e9',
-			chainId: '2'
+			chainId: '2',
 		});
 		(useHarmony as jest.Mock).mockReturnValue({
 			balance: '0',
 			fetchBalance: jest.fn(),
-			resetBalance: jest.fn()
-		})
+			resetBalance: jest.fn(),
+		});
 	});
 
 	afterEach(jest.clearAllMocks);
@@ -49,7 +49,7 @@ describe('Test Balance component', () => {
 	it('Should call reset balance if we dont have an account', () => {
 		(useWeb3React as jest.Mock).mockReturnValue({
 			account: null,
-			chainId: '2'
+			chainId: '2',
 		});
 		setup();
 		expect(useHarmony().resetBalance).toHaveBeenCalled();

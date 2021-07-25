@@ -6,11 +6,11 @@ import "hardhat/console.sol";
 contract Money {
 	uint256 moneyStored = 0;
 
-    function addMoney() payable public {
-        moneyStored += msg.value;
-    }
+	function addMoney() public payable {
+		moneyStored += msg.value;
+	}
 
-    function getMoneyStored() public view returns (uint256){
-        return moneyStored;
-    }
+	function getMoneyStored() public view returns (uint256) {
+		return moneyStored;
+	}
 }

@@ -8,10 +8,10 @@ import { getProvider } from '../utils/provider';
 type HarmonyProviderProps = { children: React.ReactNode };
 
 interface HamonyProviderContext {
-    hmy: Harmony;
-    balance: string | undefined;
-    fetchBalance: (account: string) => Promise<void>;
-    resetBalance: () => void;
+	hmy: Harmony;
+	balance: string | undefined;
+	fetchBalance: (account: string) => Promise<void>;
+	resetBalance: () => void;
 }
 
 const provider = getProvider();
@@ -20,48 +20,44 @@ const hmy = new Harmony(provider.url, { chainId: provider.chainId, chainType: pr
 const HarmonyContext = createContext<HamonyProviderContext | undefined>(undefined);
 
 export const HarmonyProvider = ({ children }: HarmonyProviderProps) => {
-    const contextBalance = useBalance();
+	const contextBalance = useBalance();
 
-    const value: HamonyProviderContext = {
-        hmy,
-        ...contextBalance
-    }
+	const value: HamonyProviderContext = {
+		hmy,
+		...contextBalance,
+	};
 
-    return (
-        <HarmonyContext.Provider value={value}>
-            {children}
-        </HarmonyContext.Provider>
-    ) 
-}
+	return <HarmonyContext.Provider value={value}>{children}</HarmonyContext.Provider>;
+};
 
 const useBalance = () => {
-    const [balance, setBalance] = useState<string>();
+	const [balance, setBalance] = useState<string>();
 
-    const fetchBalance = useCallback(
-        async (account: string) => {
-            const address = isBech32Address(account) ? account : toBech32(account);
-            const balance = await hmy.blockchain.getBalance({address});
-            const parsedBalance = fromWei(hexToNumber(balance.result), Units.one);
-            setBalance(parsedBalance)
-        },
-        [hmy, setBalance],
-    )
+	const fetchBalance = useCallback(
+		async (account: string) => {
+			const address = isBech32Address(account) ? account : toBech32(account);
+			const balance = await hmy.blockchain.getBalance({ address });
+			const parsedBalance = fromWei(hexToNumber(balance.result), Units.one);
+			setBalance(parsedBalance);
+		},
+		[hmy, setBalance],
+	);
 
-    const resetBalance = () => {
-        setBalance(undefined);
-    }
-    
-    return {
-        balance,
-        fetchBalance,
-        resetBalance
-    }
-}
+	const resetBalance = () => {
+		setBalance(undefined);
+	};
+
+	return {
+		balance,
+		fetchBalance,
+		resetBalance,
+	};
+};
 
 export const useHarmony = () => {
-    const context = useContext(HarmonyContext);
-    if (!context) {
-        throw('No Harmony provider')
-    }
-    return context
-}
+	const context = useContext(HarmonyContext);
+	if (!context) {
+		throw 'No Harmony provider';
+	}
+	return context;
+};

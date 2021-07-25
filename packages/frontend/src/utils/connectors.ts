@@ -7,7 +7,7 @@ enum ConnectorNames {
 	OneWallet = 'OneWallet',
 	Mathwallet = 'MathWallet',
 }
-export const onewallet = new OneWalletConnector({ chainId: 2 }); // Mainnet -> chainId: 1 // Testnet & Localnet -> chainId 2 
+export const onewallet = new OneWalletConnector({ chainId: 2 }); // Mainnet -> chainId: 1 // Testnet & Localnet -> chainId 2
 
 export const mathwallet = new MathWalletConnector({ chainId: 2 }); // Mainnet -> chainId: 1 // Testnet & Localnet -> chainId 2
 
