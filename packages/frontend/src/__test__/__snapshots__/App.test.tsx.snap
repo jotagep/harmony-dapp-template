@@ -3,20 +3,20 @@
 exports[`Test App component Should match snapshot 1`] = `
 <div>
   <div
-    class="sc-eCApnc boYvcd"
+    class="sc-eCApnc eaZQdw"
   >
     <div
-      class="sc-hKFxyN gjUeMc"
+      class="sc-hKFxyN lpoAlx"
     >
       <div
-        class="sc-gtsrHT jNWTnQ"
+        class="sc-gtsrHT dXGkIp"
       >
         <img
           alt="Harmony logo"
           src="harmony_logo.svg"
         />
         <div
-          class="sc-bdnxRM cpQBWR"
+          class="sc-bdnxRM eWoDGl"
         >
           <code
             aria-details="{}"
@@ -29,7 +29,7 @@ exports[`Test App component Should match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="sc-dlnjwi hpYrtS"
+        class="sc-dlnjwi GUqgz"
       >
         <code
           aria-details="{}"

@@ -3,7 +3,7 @@
 exports[`Test SignOut component Should match snapshot 1`] = `
 <div>
   <div
-    class="sc-bdnxRM jMwNvo"
+    class="sc-bdnxRM hpGzml"
   >
     <p>
       You are connected:
@@ -12,7 +12,7 @@ exports[`Test SignOut component Should match snapshot 1`] = `
       0xcfffa6ace98eb3464f77af3059389f8f2c18b6e9
     </span>
     <div
-      class="sc-gtsrHT iVCMTs"
+      class="sc-gtsrHT btuWiw"
     >
       Sign out
     </div>
