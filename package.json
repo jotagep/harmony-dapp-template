@@ -31,9 +31,9 @@
     "deploy:watch": "yarn workspace @harmony-dapp-template/hardhat deploy:live",
     "deploy:testnet": "yarn workspace @harmony-dapp-template/hardhat deploy:testnet",
     "deploy:mainnet": "yarn workspace @harmony-dapp-template/hardhat deploy:mainnet",
-    "surge": "yarn workspace @harmony-dapp-template/frontend build & yarn frontend:deploy",
-    "surge:testnet": "yarn workspace @harmony-dapp-template/frontend build:testnet & yarn frontend:deploy",
-    "surge:mainnet": "yarn workspace @harmony-dapp-template/frontend build:mainnet & yarn frontend:deploy",
+    "surge": "yarn workspace @harmony-dapp-template/frontend build && yarn frontend:deploy",
+    "surge:testnet": "yarn workspace @harmony-dapp-template/frontend build:testnet && yarn frontend:deploy",
+    "surge:mainnet": "yarn workspace @harmony-dapp-template/frontend build:mainnet && yarn frontend:deploy",
     "start": "yarn workspace @harmony-dapp-template/frontend start",
     "lint": "yarn hardhat:lint && yarn frontend:lint",
     "test": "yarn hardhat:test && yarn frontend:test"
