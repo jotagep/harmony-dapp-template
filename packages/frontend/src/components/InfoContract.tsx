@@ -52,22 +52,25 @@ const InfoContract = () => {
 	}, [connector, contractInstance, setContract]);
 
 	const handleClick = (value: string) => async () => {
-		if (!account) return null;
-		try {
-			await contract.methods.addMoney().send({
-				from: account,
-				gasPrice: 1000000000,
-				gasLimit: 210000,
-				value: new Unit(value).asOne().toWei(),
-			});
-			toast.success('Transaction done', {
-				onClose: async () => {
-					await fetchBalance(account);
-					getMoneyStored();
-				},
-			});
-		} catch (error) {
-			toast.error(error);
+		if (account) {
+			try {
+				await contract.methods.addMoney().send({
+					from: account,
+					gasPrice: 1000000000,
+					gasLimit: 210000,
+					value: new Unit(value).asOne().toWei(),
+				});
+				toast.success('Transaction done', {
+					onClose: async () => {
+						await fetchBalance(account);
+						getMoneyStored();
+					},
+				});
+			} catch (error) {
+				toast.error(error);
+			}
+		} else {
+			toast.error('Connect your wallet');
 		}
 	};
 
