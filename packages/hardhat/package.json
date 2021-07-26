@@ -40,9 +40,9 @@
   "scripts": {
     "compile": "hardhat compile",
     "deploy": "hardhat deploy --export ../frontend/src/contracts/contracts.json",
-    "deploy:testnet": "hardhat deploy --network testnet --export-all ../frontend/src/contracts/contracts.json",
-    "deploy:mainnet": "hardhat deploy --network mainnet --export-all ../frontend/src/contracts/contracts.json",
-    "deploy:live": "hardhat deploy --export-all ../frontend/src/contracts/contracts.json --watch",
+    "deploy:testnet": "hardhat deploy --network testnet --export ../frontend/src/contracts/contracts.json",
+    "deploy:mainnet": "hardhat deploy --network mainnet --export ../frontend/src/contracts/contracts.json",
+    "deploy:live": "hardhat deploy --export ../frontend/src/contracts/contracts.json --watch",
     "test": "hardhat test --network hardhat",
     "test:localnet": "hardhat test",
     "format": "prettier --write \"**/*.{js,ts,sol}\"",

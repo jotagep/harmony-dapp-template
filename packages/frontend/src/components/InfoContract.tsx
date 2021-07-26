@@ -55,7 +55,6 @@ const InfoContract = () => {
 		if (account) {
 			try {
 				await contract.methods.addMoney().send({
-					from: account,
 					gasPrice: 1000000000,
 					gasLimit: 210000,
 					value: new Unit(value).asOne().toWei(),
