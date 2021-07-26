@@ -9,8 +9,8 @@
 
 ![image](https://user-images.githubusercontent.com/8777166/126853046-376352db-627b-48c5-b569-30836ca410c7.png)
 
-### 🚨 **Tutorial**: How to start use *Harmony-dapp-template* to create your project on harmony 🚨
-**Video** -> [Youtube](https://youtu.be/pvITSKNQvvo)
+### 🚨 How to start use *Harmony-dapp-template* to create your project on harmony 
+**Video tutorial** -> [Youtube](https://youtu.be/pvITSKNQvvo)
 ## 🚴 Quick Start
 
 ## Prerequisites
