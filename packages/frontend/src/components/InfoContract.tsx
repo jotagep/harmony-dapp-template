@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { useWeb3React } from '@web3-react/core';
 import { HarmonyAbstractConnector } from '@harmony-react/abstract-connector';
 import { fromWei, Units, Unit } from '@harmony-js/utils';
+import { Contract } from '@harmony-js/contract';
 
 import { useHarmony } from '../context/harmonyContext';
-import Contracts from '../contracts/contracts.json';
+import { getExtension } from '../helpers/harmonyHelpers';
+import { createMoneyContract } from '../helpers/contractHelper';
 
 const donations = ['1', '5', '10'];
 
 const InfoContract = () => {
-	const [contract, setContract] = useState<any>();
 	const [moneyStored, setMoneyStored] = useState('0');
-	const { account, connector } = useWeb3React();
 	const { hmy, fetchBalance } = useHarmony();
-
-	const contractInstance = useMemo(
-		() => hmy.contracts.createContract(Contracts.contracts.Money.abi, Contracts.contracts.Money.address),
-		[hmy],
-	);
+	const [contract, setContract] = useState<Contract | null>(createMoneyContract(hmy));
+	const { account, connector } = useWeb3React();
 
 	const getMoneyStored = async () => {
-		try {
-			const money = await contractInstance.methods.getMoneyStored().call();
-			const parsedMoney = fromWei(money, Units.one);
-			setMoneyStored(parsedMoney);
-		} catch (error) {
-			console.error(error);
+		if (contract) {
+			try {
+				const money = await contract.methods.getMoneyStored().call();
+				const parsedMoney = fromWei(money, Units.one);
+				setMoneyStored(parsedMoney);
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	};
 
@@ -37,22 +36,22 @@ const InfoContract = () => {
 
 	useEffect(() => {
 		if (!account) {
-			setContract(undefined);
+			setContract(null);
 		}
 	}, [account]);
 
 	useEffect(() => {
-		if (connector && contractInstance) {
-			const attachContract = async () => {
-				const contractAttached = await (connector as HarmonyAbstractConnector).attachToContract(contractInstance);
-				setContract(contractAttached);
-			};
-			attachContract();
+		if (connector) {
+			const harmonyConnector = connector as HarmonyAbstractConnector;
+			const extensionWallet: any = window[harmonyConnector.windowKey];
+			const hmyExtension = getExtension(extensionWallet);
+			const contract = createMoneyContract(hmyExtension);
+			setContract(contract);
 		}
-	}, [connector, contractInstance, setContract]);
+	}, [connector, setContract]);
 
 	const handleClick = (value: string) => async () => {
-		if (account) {
+		if (account && contract) {
 			try {
 				await contract.methods.addMoney().send({
 					gasPrice: 1000000000,

@@ -21,7 +21,7 @@ const configProviders: { [name: string]: any } = {
 	},
 	mainnet: {
 		chainId: ChainID.HmyMainnet,
-		Chain_Type: ChainType.Harmony,
+		chainType: ChainType.Harmony,
 		url: 'https://api.s0.t.hmny.io',
 		networkId: '1666600000',
 	},
