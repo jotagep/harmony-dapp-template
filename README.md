@@ -9,6 +9,8 @@
 
 ![image](https://user-images.githubusercontent.com/8777166/126853046-376352db-627b-48c5-b569-30836ca410c7.png)
 
+### 🚨 **Tutorial**: How to start use *Harmony-dapp-template* to create your project on harmony 🚨
+**Video** -> [Youtube](https://youtu.be/pvITSKNQvvo)
 ## 🚴 Quick Start
 
 ## Prerequisites
@@ -18,6 +20,8 @@
 * [Harmony One Wallet Extension](https://chrome.google.com/webstore/detail/harmony-one-wallet/fnnegphlobjdpkhecapkijjdkgcjhkib)
 * [Math Wallet Extension](https://chrome.google.com/webstore/detail/math-wallet/afbcbjpbpfadlkmhmclhkeeodmamcflc)
 > NOTE: Tested on Ubuntu 20.04.2 LTS
+
+---
 
 > Clone/fork 🧰 Harmony Dapp Template:
 
@@ -38,9 +42,11 @@ yarn localnet:start
 ```bash
 cd harmony-dapp-template
 yarn deploy
+# Localnet by default
+# But you can deploy in another network: yarn deploy:testnet // yarn deploy:mainnet
 ```
 
-or if you want to have **Hot reloading** to deploy your contracts on live:
+or if you want to have ***Hot Reloading*** to deploy your contracts on live:
 
 ```bash
 cd harmony-dapp-template
@@ -62,14 +68,15 @@ yarn start
 
 📱 Open http://localhost:3000 to see the app
 
-
-### Start to play with your dapp 🥳 !!
+---
+## Start to play with your dapp 🥳 !!
 
 > To get **100 ONEs** in your wallet on localnet
 
 ```bash
 cd harmony-dapp-template
 yarn fund 'YOUR_WALLET_ADDRESS'
+# Example yarn fund one1hru2uxps5z76atvc666v4yqp8r3894wh9uf7qn
 ```
 
 Now you have all you need to interact with example dapp, but that's not all. 
@@ -87,6 +94,13 @@ To see this info in your terminal:
 ```bash
 yarn hardhat --help
 ```
+---
+
+### 🔛 Deploy in another network 
+
+When you want to deploy your contracts in another network: *Testnet or Mainnet*. You should create `.env` file based on `.example.env` and set your private keys.
+
+![env](https://user-images.githubusercontent.com/8777166/126911806-dc5bc9fa-80f0-4d17-bc9e-eda3234a8b73.png)
 
 ### ⛵ Ship it!
 Once you have your project done, you can deployed to live
@@ -96,7 +110,7 @@ cd harmony-dapp-template
 yarn surge
 # By default your frontend is build on localnet network
 # You can deploy testnet or mainnet
-# Example: yarn surge:tesnet
+# Example: yarn surge:testnet
 ```
 
 # 📚 Extra Documentation
@@ -137,8 +151,9 @@ yarn surge
 
 ## ⏱️ Coming soon...
 
+* <s>Demo Video explanation on how to use the monorepo</s> - **DONE** ✅ 
 * Template generator using Yeoman
-* Demo Video explanation on how to use the monorepo
+* Support more wallets...
 
 ---
 

@@ -164,7 +164,7 @@ subtask('clean-front-contracts', 'Clear frontend contracts folder').setAction(as
 	}
 });
 
-task("deploy", 'Deploy contracts').setAction(async (taskArgs, hre, runSuper) => {
+task('deploy', 'Deploy contracts').setAction(async (taskArgs, hre, runSuper) => {
 	if (!fs.existsSync(contractsFrontDir)) {
 		fs.mkdirSync(contractsFrontDir, { recursive: true });
 	}
