@@ -10,6 +10,7 @@
   ],
   "private": true,
   "scripts": {
+    "autoinit": "./scripts/autoinit.sh",
     "localnet:build": "docker build -t harmonyone/localnet docker",
     "localnet:start": "docker run --name harmony-localnet --rm -d -p 9500:9500 -p 9501:9501 -p 9800:9800 -p 9801:9801 harmonyone/localnet && ./scripts/init-node.sh",
     "localnet:stop": "docker rm -f harmony-localnet",

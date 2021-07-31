@@ -29,6 +29,17 @@
 git clone https://github.com/jotagep/harmony-dapp-template
 ```
 
+*Once you have repository downloaded, you can follow **Auto init** or **Manual init** tutorial* 
+### Auto init
+
+> This script build & start docker harmony localnet and deploy your contract with ***Hot reloading***, all-in-one command 📡.
+
+```bash
+cd harmony-dapp-template
+yarn autoinit
+```
+### Manual init
+
 > Install dependencies and build & start your ⛓️ Harmony Localnet Node:
 
 ```bash
@@ -53,11 +64,14 @@ cd harmony-dapp-template
 yarn deploy:watch
 ```
 
-> Open a third terminal window, start your 📱 frontend:
+### Finally
+
+> Open another terminal window, start your 📱 frontend:
 
 ```bash
 cd harmony-dapp-template
 yarn start
+# Start your frontend in localhost:3000
 ```
 
 🔏 Edit your smart contract `Donation.sol` in `packages/hardhat/contracts`
