@@ -6,8 +6,6 @@ packages/hardhat/deployments
 packages/hardhat/cache*
 packages/hardhat/types
 
-packages/frontend/src/contracts/*
-
 # dependencies
 /node_modules
 

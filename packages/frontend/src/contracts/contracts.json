@@ -1,0 +1,31 @@
+{
+  "name": "localnet",
+  "chainId": "1666700000",
+  "contracts": {
+    "Donation": {
+      "address": "0xDF2b9Cf11408C4B59E0fA24abeEea68Fdfc2fb9A",
+      "abi": [
+        {
+          "inputs": [],
+          "name": "addDonation",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getDonationStored",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+    }
+  }
+}

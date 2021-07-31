@@ -3,6 +3,7 @@ import 'styled-components';
 
 declare global {
 	interface Window {
+		ethereum: any;
 		harmony: any;
 		onewallet: any;
 	}
