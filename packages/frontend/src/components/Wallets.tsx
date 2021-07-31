@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 
 import { connectorsByName } from '../utils/connectors';
-import { mapWallets } from '../helpers/walletHelpers'
+import { mapWallets } from '../helpers/walletHelpers';
 
 export interface Props {
 	closeModal: () => void;
@@ -34,7 +34,7 @@ const WalletImg = styled.img`
 	width: 42px;
 	height: 42px;
 	margin-bottom: 1rem;
-`; 
+`;
 
 const WalletsComponent = styled.div`
 	display: grid;

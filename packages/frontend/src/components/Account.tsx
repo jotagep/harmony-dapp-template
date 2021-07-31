@@ -15,7 +15,7 @@ const Account = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const { account, active } = useWeb3React();
 
-	const parsedAccount =  account && !isBech32Address(account) ? toBech32(account) : account;
+	const parsedAccount = account && !isBech32Address(account) ? toBech32(account) : account;
 
 	const openModal = () => {
 		setModalIsOpen(true);

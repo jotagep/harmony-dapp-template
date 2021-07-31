@@ -42,7 +42,7 @@ const InfoContract = () => {
 	useEffect(() => {
 		if (connector) {
 			(async () => {
-				const contract =  await getDonationContractFromConnector(connector, library)
+				const contract = await getDonationContractFromConnector(connector, library);
 				setContract(contract);
 			})();
 		}

@@ -12,7 +12,7 @@ export enum ConnectorNames {
 
 const onewallet = new OneWalletConnector({ chainId: 2 }); // Mainnet -> chainId: 1 // Testnet & Localnet -> chainId 2
 const mathwallet = new MathWalletConnector({ chainId: 2 }); // Mainnet -> chainId: 1 // Testnet & Localnet -> chainId 2
-export const injected = new InjectedConnector({ supportedChainIds: [1666600000, 1666700000] })
+export const injected = new InjectedConnector({ supportedChainIds: [1666600000, 1666700000] });
 
 export const connectorsByName: { [connectorName: string]: AbstractConnector } = {
 	[ConnectorNames.OneWallet]: onewallet,
