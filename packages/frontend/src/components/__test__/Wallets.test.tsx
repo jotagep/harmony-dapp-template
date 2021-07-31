@@ -6,6 +6,7 @@ import { useWeb3React } from '@web3-react/core';
 import Wallets, { Props } from '../Wallets';
 
 import { connectorsByName } from '../../utils/connectors';
+import { mapWallets } from '../../helpers/walletHelpers';
 
 jest.mock('@web3-react/core');
 
@@ -40,7 +41,7 @@ describe('Test Wallets component', () => {
 		const walletName = 'OneWallet';
 		const { getByText } = setup();
 
-		const oneWallet = getByText(walletName);
+		const oneWallet = getByText(mapWallets[walletName].name);
 		fireEvent.click(oneWallet);
 
 		expect(useWeb3React().activate).toHaveBeenCalledWith(connectorsByName[walletName]);

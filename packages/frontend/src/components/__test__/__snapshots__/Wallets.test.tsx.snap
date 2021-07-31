@@ -3,17 +3,34 @@
 exports[`Test Wallets component Should match snapshot 1`] = `
 <div>
   <div
-    class="sc-bdnxRM hCNCpa"
+    class="sc-gtsrHT dURUhH"
   >
     <div
-      class="sc-gtsrHT czZCjj"
+      class="sc-dlnjwi GMoHn"
     >
-      OneWallet
+      <img
+        class="sc-bdnxRM kIwPUV"
+        src="one.svg"
+      />
+      One wallet
     </div>
     <div
-      class="sc-gtsrHT czZCjj"
+      class="sc-dlnjwi GMoHn"
     >
-      MathWallet
+      <img
+        class="sc-bdnxRM kIwPUV"
+        src="math.png"
+      />
+      Math wallet
+    </div>
+    <div
+      class="sc-dlnjwi GMoHn"
+    >
+      <img
+        class="sc-bdnxRM kIwPUV"
+        src="metamask.svg"
+      />
+      Metamask
     </div>
   </div>
 </div>

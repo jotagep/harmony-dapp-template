@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useWeb3React } from '@web3-react/core';
 import { toBech32 } from '@harmony-js/crypto';
-import { isHmyLibrary } from '../helpers/harmonyHelpers';
+import { isBech32Address } from '@harmony-js/utils';
 
 import SignOut from './SignOut';
 import Wallets from './Wallets';
@@ -13,10 +13,9 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const Account = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const { account, library, active } = useWeb3React();
+	const { account, active } = useWeb3React();
 
-	const isHmy = isHmyLibrary(library);
-	const parsedAccount = isHmy && account ? toBech32(account) : account;
+	const parsedAccount = account && !isBech32Address(account) ? toBech32(account) : account;
 
 	const openModal = () => {
 		setModalIsOpen(true);

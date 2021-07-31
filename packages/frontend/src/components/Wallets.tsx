@@ -4,6 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 
 import { connectorsByName } from '../utils/connectors';
+import { mapWallets } from '../helpers/walletHelpers';
 
 export interface Props {
 	closeModal: () => void;
@@ -21,12 +22,19 @@ const Wallets = ({ closeModal }: Props) => {
 		<WalletsComponent>
 			{Object.keys(connectorsByName).map(name => (
 				<WalletItem key={name} onClick={handleClick(connectorsByName[name])}>
-					{name}
+					<WalletImg src={mapWallets[name].image} />
+					{mapWallets[name].name}
 				</WalletItem>
 			))}
 		</WalletsComponent>
 	);
 };
+
+const WalletImg = styled.img`
+	width: 42px;
+	height: 42px;
+	margin-bottom: 1rem;
+`;
 
 const WalletsComponent = styled.div`
 	display: grid;

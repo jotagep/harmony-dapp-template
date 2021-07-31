@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { useWeb3React } from '@web3-react/core';
-import { HarmonyAbstractConnector } from '@harmony-react/abstract-connector';
 import { fromWei, Units, Unit } from '@harmony-js/utils';
 import { Contract } from '@harmony-js/contract';
 
 import { useHarmony } from '../context/harmonyContext';
-import { getExtension } from '../helpers/harmonyHelpers';
-import { createDonationContract } from '../helpers/contractHelper';
+
+import { createDonationContract, getDonationContractFromConnector } from '../helpers/contractHelper';
 
 const donations = ['1', '5', '10'];
 
@@ -16,7 +15,7 @@ const InfoContract = () => {
 	const [donationStored, setDonationStored] = useState('0');
 	const { hmy, fetchBalance } = useHarmony();
 	const [contract, setContract] = useState<Contract | null>(createDonationContract(hmy));
-	const { account, connector } = useWeb3React();
+	const { account, connector, library } = useWeb3React();
 
 	const getDonationStored = async () => {
 		if (contract) {
@@ -42,11 +41,10 @@ const InfoContract = () => {
 
 	useEffect(() => {
 		if (connector) {
-			const harmonyConnector = connector as HarmonyAbstractConnector;
-			const extensionWallet: any = window[harmonyConnector.windowKey];
-			const hmyExtension = getExtension(extensionWallet);
-			const contract = createDonationContract(hmyExtension);
-			setContract(contract);
+			(async () => {
+				const contract = await getDonationContractFromConnector(connector, library);
+				setContract(contract);
+			})();
 		}
 	}, [connector, setContract]);
 
@@ -54,6 +52,7 @@ const InfoContract = () => {
 		if (account && contract) {
 			try {
 				await contract.methods.addDonation().send({
+					from: account,
 					gasPrice: 1000000000,
 					gasLimit: 210000,
 					value: new Unit(value).asOne().toWei(),

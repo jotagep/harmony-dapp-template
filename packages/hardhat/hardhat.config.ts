@@ -9,7 +9,7 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import 'hardhat-deploy';
 
-import {  toBech32 } from '@harmony-js/crypto';
+import { toBech32 } from '@harmony-js/crypto';
 import { fromWei, Units, toWei, numberToHex } from '@harmony-js/utils';
 
 import { parseOneAddress } from './helpers/accountHelpers';

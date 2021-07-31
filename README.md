@@ -19,6 +19,7 @@
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 * [Harmony One Wallet Extension](https://chrome.google.com/webstore/detail/harmony-one-wallet/fnnegphlobjdpkhecapkijjdkgcjhkib)
 * [Math Wallet Extension](https://chrome.google.com/webstore/detail/math-wallet/afbcbjpbpfadlkmhmclhkeeodmamcflc)
+* [Metamask wallet](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) - *Learn [how to configure](https://docs.harmony.one/home/network/wallets/browser-extensions-wallets/metamask-wallet) to use harmony network*
 > NOTE: Tested on Ubuntu 20.04.2 LTS
 
 ---
@@ -166,6 +167,7 @@ yarn surge
 ## ⏱️ Coming soon...
 
 * <s>Demo Video explanation on how to use the monorepo</s> - **DONE** ✅ 
+* <s>Support Metamask wallet</s> - **DONE** ✅ 
 * Template generator using Yeoman
 * Support more wallets...
 
