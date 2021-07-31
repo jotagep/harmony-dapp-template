@@ -8,22 +8,22 @@ import { Contract } from '@harmony-js/contract';
 
 import { useHarmony } from '../context/harmonyContext';
 import { getExtension } from '../helpers/harmonyHelpers';
-import { createMoneyContract } from '../helpers/contractHelper';
+import { createDonationContract } from '../helpers/contractHelper';
 
 const donations = ['1', '5', '10'];
 
 const InfoContract = () => {
-	const [moneyStored, setMoneyStored] = useState('0');
+	const [donationStored, setDonationStored] = useState('0');
 	const { hmy, fetchBalance } = useHarmony();
-	const [contract, setContract] = useState<Contract | null>(createMoneyContract(hmy));
+	const [contract, setContract] = useState<Contract | null>(createDonationContract(hmy));
 	const { account, connector } = useWeb3React();
 
-	const getMoneyStored = async () => {
+	const getDonationStored = async () => {
 		if (contract) {
 			try {
-				const money = await contract.methods.getMoneyStored().call();
-				const parsedMoney = fromWei(money, Units.one);
-				setMoneyStored(parsedMoney);
+				const donations = await contract.methods.getDonationStored().call();
+				const parsedDonations = fromWei(donations, Units.one);
+				setDonationStored(parsedDonations);
 			} catch (error) {
 				console.error(error);
 			}
@@ -31,7 +31,7 @@ const InfoContract = () => {
 	};
 
 	useEffect(() => {
-		getMoneyStored();
+		getDonationStored();
 	}, []);
 
 	useEffect(() => {
@@ -45,7 +45,7 @@ const InfoContract = () => {
 			const harmonyConnector = connector as HarmonyAbstractConnector;
 			const extensionWallet: any = window[harmonyConnector.windowKey];
 			const hmyExtension = getExtension(extensionWallet);
-			const contract = createMoneyContract(hmyExtension);
+			const contract = createDonationContract(hmyExtension);
 			setContract(contract);
 		}
 	}, [connector, setContract]);
@@ -53,7 +53,7 @@ const InfoContract = () => {
 	const handleClick = (value: string) => async () => {
 		if (account && contract) {
 			try {
-				await contract.methods.addMoney().send({
+				await contract.methods.addDonation().send({
 					gasPrice: 1000000000,
 					gasLimit: 210000,
 					value: new Unit(value).asOne().toWei(),
@@ -61,7 +61,7 @@ const InfoContract = () => {
 				toast.success('Transaction done', {
 					onClose: async () => {
 						await fetchBalance(account);
-						getMoneyStored();
+						getDonationStored();
 					},
 				});
 			} catch (error) {
@@ -76,7 +76,7 @@ const InfoContract = () => {
 		<InfoContractComponent>
 			<Wrapper>
 				Total Staked Donations
-				<TotalStaked>{moneyStored} ONE</TotalStaked>
+				<TotalStaked>{donationStored} ONE</TotalStaked>
 			</Wrapper>
 			<Subtitle>Your donation:</Subtitle>
 			<FlexList>

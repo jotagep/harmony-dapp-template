@@ -60,7 +60,7 @@ cd harmony-dapp-template
 yarn start
 ```
 
-🔏 Edit your smart contract `Money.sol` in `packages/hardhat/contracts`
+🔏 Edit your smart contract `Donation.sol` in `packages/hardhat/contracts`
 
 📝 Edit your frontend `App.jsx` in `packages/frontend/src`
 
