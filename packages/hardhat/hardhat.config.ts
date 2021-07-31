@@ -9,8 +9,10 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import 'hardhat-deploy';
 
-import { fromBech32, toBech32 } from '@harmony-js/crypto';
-import { fromWei, isBech32Address, Units, toWei, numberToHex } from '@harmony-js/utils';
+import {  toBech32 } from '@harmony-js/crypto';
+import { fromWei, Units, toWei, numberToHex } from '@harmony-js/utils';
+
+import { parseOneAddress } from './helpers/accountHelpers';
 
 let mnemonic = process.env.MNEMONIC;
 if (!mnemonic) {
@@ -74,8 +76,6 @@ const config: HardhatUserConfig = {
 		},
 	},
 };
-
-const parseOneAddress = (address: string): string => (isBech32Address(address) ? fromBech32(address) : address);
 
 // Tasks
 task('balance', "Prints an account's balance")

@@ -18,7 +18,7 @@ const Account = () => {
 	const isHmy = isHmyLibrary(library);
 	const parsedAccount = isHmy && account ? toBech32(account) : account;
 
-	const openModal = async () => {
+	const openModal = () => {
 		setModalIsOpen(true);
 	};
 
