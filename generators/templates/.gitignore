@@ -1,4 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+**/node_modules
+packages/hardhat/artifacts*
+packages/hardhat/deployments
+packages/hardhat/cache*
+packages/hardhat/types
+
 # dependencies
 /node_modules
 

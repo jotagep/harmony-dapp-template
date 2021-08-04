@@ -2,7 +2,7 @@ import { Harmony, HarmonyExtension } from '@harmony-js/core';
 import { HarmonyAbstractConnector } from '@harmony-react/abstract-connector';
 import { Contract as HarmonyContract } from '@harmony-js/contract';
 import { AbstractConnector } from '@web3-react/abstract-connector';
-import { getExtension } from '../helpers/harmonyHelpers';
+import { getExtension } from './harmonyHelpers';
 import Web3 from 'web3';
 import Contracts from '../contracts/contracts.json';
 

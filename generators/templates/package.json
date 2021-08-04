@@ -1,0 +1,52 @@
+{
+  "name": "@<%= parsedTitle %>/monorepo",
+  "version": "1.0.0",
+  "author": "<%= author %>",
+  "keywords": [
+    "dapp",
+    "hardhat",
+    "harmony",
+    "react",
+    "template"
+  ],
+  "private": true,
+  "scripts": {
+    "autoinit": "./scripts/autoinit.sh",
+    "localnet:build": "docker build -t harmonyone/localnet docker",
+    "localnet:start": "docker run --name harmony-localnet --rm -d -p 9500:9500 -p 9501:9501 -p 9800:9800 -p 9801:9801 harmonyone/localnet && ./scripts/init-node.sh",
+    "localnet:stop": "docker rm -f harmony-localnet",
+    "localnet:logs": "docker logs -f harmony-localnet",
+    "localnet:hmy": "docker exec -it harmony-localnet hmy",
+    "hardhat": "yarn workspace @<%= parsedTitle %>/hardhat hardhat",
+    "hardhat:format": "yarn workspace @<%= parsedTitle %>/hardhat format",
+    "hardhat:lint": "yarn workspace @<%= parsedTitle %>/hardhat lint",
+    "hardhat:test": "yarn workspace @<%= parsedTitle %>/hardhat test",
+    "frontend:build": "yarn workspace @<%= parsedTitle %>/frontend build",
+    "frontend:deploy": "yarn workspace @<%= parsedTitle %>/frontend deploy",
+    "frontend:format": "yarn workspace @<%= parsedTitle %>/frontend format",
+    "frontend:lint": "yarn workspace @<%= parsedTitle %>/frontend lint",
+    "frontend:test": "yarn workspace @<%= parsedTitle %>/frontend test",
+    "compile": "yarn workspace @<%= parsedTitle %>/hardhat compile",
+    "format": "yarn hardhat:format && yarn frontend:format",
+    "fund": "yarn workspace @<%= parsedTitle %>/hardhat hardhat fund",
+    "deploy": "yarn workspace @<%= parsedTitle %>/hardhat deploy",
+    "deploy:watch": "yarn workspace @<%= parsedTitle %>/hardhat deploy:live",
+    "deploy:testnet": "yarn workspace @<%= parsedTitle %>/hardhat deploy:testnet",
+    "deploy:mainnet": "yarn workspace @<%= parsedTitle %>/hardhat deploy:mainnet",
+    "surge": "yarn workspace @<%= parsedTitle %>/frontend build && yarn frontend:deploy",
+    "surge:testnet": "yarn workspace @<%= parsedTitle %>/frontend build:testnet && yarn frontend:deploy",
+    "surge:mainnet": "yarn workspace @<%= parsedTitle %>/frontend build:mainnet && yarn frontend:deploy",
+    "start": "yarn workspace @<%= parsedTitle %>/frontend start",
+    "lint": "yarn hardhat:lint && yarn frontend:lint",
+    "test": "yarn hardhat:test && yarn frontend:test"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/hardhat",
+      "**/hardhat/**"
+    ]
+  }
+}
