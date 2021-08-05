@@ -61,11 +61,8 @@ module.exports = class extends Generator {
     }
   }
 
-  install() {
-    this.spawnCommand('yarn', ['install']);
-  }
-
   end() {
+    this.spawnCommand('yarn', ['install']);
     console.log(`============================================================`);
     console.log(`======= Welcome to ${chalk.green(this.props.title)} ========`);
     console.log(`============================================================`);
