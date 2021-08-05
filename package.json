@@ -7,7 +7,9 @@
     "url": "https://jotagep.com"
   },
   "description": "Generator to create your Harmony decentraliced app in a seconds",
+  "homepage": "https://github.com/jotagep/harmony-dapp-template#generator",
   "repository": "https://github.com/jotagep/harmony-dapp-template#generator",
+  "main": "generators/index.js",
   "files": [
     "generators"
   ],
