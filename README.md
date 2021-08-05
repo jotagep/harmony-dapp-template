@@ -35,6 +35,12 @@ yo harmony-dapp
 ### That's all 🎉
 
 Once our project is generated, you can start to create your dapp.
+
+```bash
+#Quick start
+yarn autoinit
+```
+
 Check [full documentation](https://github.com/jotagep/harmony-dapp-template) to know how to use in depth
 
 ## Options CLI
@@ -45,6 +51,5 @@ Harmony-dapp generator has a cli options that helps you to configure your projec
  - **Author**: Author of new project
  - **Testnet Key** *(optional)*: Add your testnet account's private key if you want to deploy to testnet.
  - **Mainnet Key** *(optional)*: Add your mainnet account's private key if you want to deploy to mainnet.
- - **Autoinit**: Choose yes, if you want an auto installation. *See `autoinit` command on [full documentation](https://github.com/jotagep/harmony-dapp-template)*
 
 This generator is built in [Yeoman](https://yeoman.io/) 👌

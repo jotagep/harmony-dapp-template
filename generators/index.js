@@ -37,13 +37,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'mainnetKey',
         message: 'Add your mainnet account private key if you want deploy on mainnet (optional)',
-      },
-      {
-        type: 'confirm',
-        name: 'autoInit',
-        message: 'Do you want run auto init build?',
-        default: false
-      },
+      }
     ];
 
     return this.prompt(prompts).then(props => {
@@ -72,9 +66,6 @@ module.exports = class extends Generator {
   }
 
   end() {
-    if (this.props.autoInit) {
-      this.spawnCommand('yarn', ['autoinit'], {});
-    }
     console.log(`============================================================`);
     console.log(`======= Welcome to ${chalk.green(this.props.title)} ========`);
     console.log(`============================================================`);
