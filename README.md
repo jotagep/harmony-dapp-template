@@ -1,5 +1,7 @@
 # Generator Harmony Dapp 🚀
 
+[![Version](https://badge.fury.io/js/generator-harmony-dapp.svg)](https://npmjs.org/package/generator-harmony-dapp)
+
 Generate your Harmony dapp project in a few seconds with just a command.
 
 ## Prerequisites
@@ -12,6 +14,8 @@ Generate your Harmony dapp project in a few seconds with just a command.
 > NOTE: Tested on Ubuntu 20.04.2 LTS
 
 ## How to use it?
+
+**You can check our new tutorial** ***NEW** -> [Youtube](https://youtu.be/ys7dtz1YvpM)
 
 We just need two simple steps.
 
