@@ -11,7 +11,8 @@
 
 ### 🚨 How to start use *Harmony-dapp-template* to create your project on harmony 
 
-**Video tutorial with generator** -> 
+**Video tutorial with generator** ⚙️ ***NEW*** -> [Youtube](https://youtu.be/ys7dtz1YvpM)
+
 **Video tutorial manual** -> [Youtube](https://youtu.be/pvITSKNQvvo)
 ## 🚴 Quick Start
 
