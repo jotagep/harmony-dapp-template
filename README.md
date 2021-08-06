@@ -10,7 +10,10 @@
 ![image](https://user-images.githubusercontent.com/8777166/126853046-376352db-627b-48c5-b569-30836ca410c7.png)
 
 ### 🚨 How to start use *Harmony-dapp-template* to create your project on harmony 
-**Video tutorial** -> [Youtube](https://youtu.be/pvITSKNQvvo)
+
+**Video tutorial with generator** ⚙️ ***NEW*** -> [Youtube](https://youtu.be/ys7dtz1YvpM)
+
+**Video tutorial manual** -> [Youtube](https://youtu.be/pvITSKNQvvo)
 ## 🚴 Quick Start
 
 ## Prerequisites
@@ -29,6 +32,22 @@
 ```bash
 git clone https://github.com/jotagep/harmony-dapp-template
 ```
+
+or 
+
+> Use our harmony dapp generator ⚙️ ***NEW***:
+
+```bash
+# Install yo and our generator globally
+npm install -g yo
+npm install -g generator-harmony-dapp
+
+# Create a folder & use harmony dapp generator
+mkdir harmony-project
+cd harmony-project
+yo harmony-dapp
+```
+*Check generator's [full documentation](https://github.com/jotagep/harmony-dapp-template/tree/generator)*
 
 *Once you have repository downloaded, you can follow **Auto init** or **Manual init** tutorial* 
 ### Auto init
@@ -161,14 +180,14 @@ yarn surge
   - [x] Provide extra resources and "kickstart" documentation links for developers.
   - [x] Document how to deploy React application (simplified).
 - Nice-to-have
-  - [ ] Would be nice to use tool like cookiecutter to make template customizable with Author, App Name, Software Versions, Tags, Logos and other things that might be non-static.
+  - [x] Would be nice to use tool like cookiecutter to make template customizable with Author, App Name, Software Versions, Tags, Logos and other things that might be non-static. ***UPDATED**
   - [x] Include CI workflow (probably easiest to use git workflow) to run test on push.
 
 ## ⏱️ Coming soon...
 
 * <s>Demo Video explanation on how to use the monorepo</s> - **DONE** ✅ 
 * <s>Support Metamask wallet</s> - **DONE** ✅ 
-* Template generator using Yeoman
+* <s>Template generator using Yeoman</s> - **DONE** ✅ 
 * Support more wallets...
 
 ---
