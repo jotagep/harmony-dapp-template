@@ -43,11 +43,13 @@ npm install -g yo
 npm install -g generator-harmony-dapp
 
 # Create a folder & use harmony dapp generator
-mkdir harmony-project
-cd harmony-project
+mkdir harmony-dapp-template
+cd harmony-dapp-template
 yo harmony-dapp
 ```
 *Check generator's [full documentation](https://github.com/jotagep/harmony-dapp-template/tree/generator)*
+
+---
 
 *Once you have repository downloaded, you can follow **Auto init** or **Manual init** tutorial* 
 ### Auto init
